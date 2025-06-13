@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
         id: 1,
         title: "Modern Family",
         img: "https://www.peacocktv.com/dam/growth/assets/Library/ModernFamily/modern-family-description-image.jpg",
+        type: "Series",
         description:
           "Three modern-day families from California try to deal with their kids, quirky spouses and jobs in their own unique ways, often falling into hilarious situations.",
       },
@@ -18,6 +19,7 @@ export async function GET(request: NextRequest) {
         id: 2,
         title: "Breaking Bad",
         img: "https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_.jpg",
+        type: "Series",
         description:
           "A high school chemistry teacher turned methamphetamine producer.",
       },
@@ -27,6 +29,7 @@ export async function GET(request: NextRequest) {
         id: 3,
         title: "Inception",
         img: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+        type: "Movie",
         description:
           "A thief who steals corporate secrets through dream-sharing technology.",
       },
@@ -34,16 +37,23 @@ export async function GET(request: NextRequest) {
         id: 4,
         title: "The Dark Knight",
         img: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg",
+        type: "Movie",
         description: "Batman faces the Joker in Gotham City.",
       },
     ],
   };
 
+  // Simulate delay
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  // Simulate error
+  // return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+  //   status: 500,
+  //   headers: { "Content-Type": "application/json" },
+  // });
+
   if (type === "both") {
-    const combinedData = [
-      ...data.series.map((item) => ({ ...item, type: "Series" })),
-      ...data.movies.map((item) => ({ ...item, type: "Movie" })),
-    ];
+    const combinedData = [...data.series, ...data.movies];
     return new Response(JSON.stringify(combinedData), {
       headers: { "Content-Type": "application/json" },
     });

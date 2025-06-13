@@ -3,6 +3,7 @@ export interface TrendingData {
   title: string;
   description: string;
   img: string;
+  type: "Series" | "Movie";
 }
 
 export interface TrendingResponse {
@@ -10,6 +11,27 @@ export interface TrendingResponse {
   movies: TrendingData[];
 }
 
-export interface TrendingItem extends TrendingData {
-  type?: "series" | "movie";
+interface SeriesEpisode {
+  episodeNumber: number;
+  title: string;
+  description: string;
+  videoUrl: string;
+}
+
+export interface SeriesSeason {
+  seasonNumber: number;
+  episodes: SeriesEpisode[];
+}
+
+export interface SeriesData {
+  id: string;
+  title: string;
+  img: string;
+  description: string;
+  seasons: SeriesSeason[];
+}
+
+export interface SeasonEpisode {
+  seasonNumber: number;
+  episodeNumber: number;
 }
