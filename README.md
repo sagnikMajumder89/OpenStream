@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 OpenStream
 
-## Getting Started
+A modern video streaming platform built with **Next.js**, **Tailwind CSS**, and **ShadCN UI** to showcase frontend skills and clean component design. This project was created as part of a portfolio to demonstrate UI/UX, API integration, and dynamic theming (dark/light mode) for video-based apps.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- 🌗 **Dark/Light mode toggle** using `next-themes` and ShadCN
+- 🎥 **Trending videos UI** (Movies and Series)
+- ⚙️ Custom **API route** for mock data fetching
+- 🔄 Loading indicator with fallback state
+- 💅 Fully responsive UI using **Tailwind CSS**
+- 🧩 Componentized with **ShadCN Cards**, Headers, and Layouts
+- 🌐 Remote image loading from any HTTPS domain via `next/image`
+
+---
+
+## 📸 Preview
+
+> Add a screenshot or GIF here (optional)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **UI Components**: [ShadCN](https://ui.shadcn.com)
+- **Dark Mode**: [next-themes](https://github.com/pacocoursey/next-themes)
+- **Data Fetching**: Axios + Mock API via Next.js route handlers
+- **Image Optimization**: Next.js Image component
+
+---
+
+## 🧪 Run Locally
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/openstream.git
+   cd openstream
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open `http://localhost:3000` to view in browser.
+
+---
+
+## 🔗 API Reference
+
+### `/api/trendings?type=series|movies`
+
+Returns trending mock data for series or movies.
+
+Example:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+GET /api/trendings?type=series
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌍 Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You can deploy this project easily using:
 
-## Learn More
+- **[Vercel](https://vercel.com)** (Recommended for Next.js)
+- **Netlify** (with Next.js plugin)
+- **Render**
+- **VPS**
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📜 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT License. Free for personal and educational use.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🙋‍♂️ Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Sagnik Majumder**  
+[GitHub](https://github.com/sagnikMajumder89) • [Portfolio](https://chessmate.bytebuilderz.xyz/developer)
