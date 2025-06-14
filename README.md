@@ -16,12 +16,6 @@ A modern video streaming platform built with **Next.js**, **Tailwind CSS**, and 
 
 ---
 
-## 📸 Preview
-
-> Add a screenshot or GIF here (optional)
-
----
-
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 14](https://nextjs.org)
@@ -38,8 +32,8 @@ A modern video streaming platform built with **Next.js**, **Tailwind CSS**, and 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/openstream.git
-   cd openstream
+   git clone https://github.com/sagnikMajumder89/OpenStream.git
+   cd OpenStream
    ```
 
 2. Install dependencies:
