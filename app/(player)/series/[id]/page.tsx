@@ -44,7 +44,7 @@ export default function Player() {
       setError("Series ID is required");
       setIsFetching(false);
     }
-  }, []);
+  }, [id]);
 
   if (isFetching) {
     return <LoadingScreen />;

@@ -4,14 +4,14 @@ import { join } from "path";
 
 export async function GET(
   req: NextRequest,
-  context: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   const token = req.cookies.get("feedback")?.value;
   if (!token || token !== process.env.NEXT_VIDEO_TOKEN) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
-  const params = await context.params;
-  const relativePath = params.path.join("/");
+  const { path } = await params;
+  const relativePath = path.join("/");
   const filePath = join(process.cwd(), "contents", relativePath);
 
   if (!existsSync(filePath)) {
@@ -36,6 +36,7 @@ export async function GET(
     headers["Content-Type"] = getMimeType(filePath);
 
     const stream = createReadStream(filePath, { start, end });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return new NextResponse(stream as any, {
       status: 206,
       headers,
@@ -44,6 +45,7 @@ export async function GET(
 
   headers["Content-Length"] = fileStat.size.toString();
   const stream = createReadStream(filePath);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return new NextResponse(stream as any, {
     status: 200,
     headers,

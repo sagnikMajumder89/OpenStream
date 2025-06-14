@@ -25,6 +25,7 @@ export default function VideoPlayer({ src }: { src: string }) {
       });
 
       playerRef.current.ready(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (playerRef.current as any)?.textTrackSettings.setValues({
           backgroundColor: "black",
           backgroundOpacity: "0",
@@ -33,10 +34,12 @@ export default function VideoPlayer({ src }: { src: string }) {
           fontPercent: 1.0,
           textOpacity: "1",
         });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (playerRef.current as any)?.textTrackSettings.updateDisplay();
       });
     } else {
       // If reusing player, clear previous remote text tracks
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const remoteTracks = playerRef.current.remoteTextTracks() as any;
       for (let i = remoteTracks.length - 1; i >= 0; i--) {
         playerRef.current.removeRemoteTextTrack(remoteTracks[i]);

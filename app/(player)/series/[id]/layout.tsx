@@ -3,7 +3,6 @@
 import PasswordDialog from "@/components/player/password-dialog";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { set } from "video.js/dist/types/tech/middleware";
 
 export default function SeriesLayout({
   children,
@@ -37,7 +36,7 @@ export default function SeriesLayout({
       }
     };
     check();
-  });
+  }, []);
 
   if (!password) {
     return (

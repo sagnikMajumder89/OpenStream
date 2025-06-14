@@ -64,6 +64,7 @@ export async function GET(request: NextRequest) {
     };
 
     const videoStream = fs.createReadStream(filePath, { start, end });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return new Response(videoStream as any, { status: 206, headers });
   } catch (error) {
     console.error("Error in video-url route:", error);
