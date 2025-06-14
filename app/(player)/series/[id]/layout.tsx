@@ -1,7 +1,9 @@
 "use client";
 
 import PasswordDialog from "@/components/player/password-dialog";
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { set } from "video.js/dist/types/tech/middleware";
 
 export default function SeriesLayout({
   children,
@@ -24,8 +26,17 @@ export default function SeriesLayout({
       .split("; ")
       .find((row) => row.startsWith("feedback="))
       ?.split("=")[1];
-
     if (password) setPassword(true);
+    const check = async () => {
+      try {
+        await axios.get("/api/check");
+      } catch {
+        document.cookie = "feedback=; path=/; max-age=0;";
+        setPassword(false);
+        setIsDialogOpen(true);
+      }
+    };
+    check();
   });
 
   if (!password) {

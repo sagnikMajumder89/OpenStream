@@ -8,7 +8,7 @@ interface ErrorProps {
 
 export default function Error({ message, button }: ErrorProps) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center h-full">
+    <div className="flex-1 flex flex-col items-center justify-center h-full my-10">
       <div className="flex flex-col items-center justify-center gap-2">
         <ShieldAlert className="w-16 h-16 text-red-600 mt-4" />
         <h1 className="text-2xl font-bold text-red-600">Error</h1>

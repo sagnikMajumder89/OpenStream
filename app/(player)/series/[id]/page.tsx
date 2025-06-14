@@ -6,9 +6,7 @@ import SeriesSelectorDrawer from "@/components/player/series-selector-drawer";
 import Error from "@/components/ui/error";
 import LoadingScreen from "@/components/ui/loading-screen";
 import { SeasonEpisode, SeriesData } from "@/lib/interface";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import axios, { AxiosError } from "axios";
-import { Play } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -19,6 +17,7 @@ export default function Player() {
   const [series, setSeries] = useState<SeriesData | null>(null);
   const [selectedSeasonEpisode, setSelectedSeasonEpisode] =
     useState<SeasonEpisode>({ seasonNumber: 1, episodeNumber: 1 });
+
   useEffect(() => {
     const fetchSeries = async () => {
       try {
@@ -57,14 +56,15 @@ export default function Player() {
     <main className="flex-1 flex flex-col">
       <div className="flex-1 flex flex-col items-center justify-center h-full">
         <h1 className="text-2xl font-bold mb-4">{series!.title}</h1>
-        <VideoPlayer
-          videoUrl={
-            series!.seasons[selectedSeasonEpisode.seasonNumber - 1].episodes[
-              selectedSeasonEpisode.episodeNumber - 1
-            ].videoUrl
-          }
-          thumbnailUrl={series!.img}
-        />
+        <div className="w-full max-w-3xl mb-4">
+          <VideoPlayer
+            src={
+              series!.seasons[selectedSeasonEpisode.seasonNumber - 1].episodes[
+                selectedSeasonEpisode.episodeNumber - 1
+              ].videoUrl
+            }
+          />
+        </div>
         <p className="text-gray-700 mb-4">{series!.description}</p>
         {/* Season selector */}
         <SeriesSelectorDrawer

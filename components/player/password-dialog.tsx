@@ -8,6 +8,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 interface PasswordDialogProps {
   setPassword: (password: string) => void;
@@ -20,6 +22,7 @@ export default function PasswordDialog({
   open,
   onClose,
 }: PasswordDialogProps) {
+  const router = useRouter();
   return (
     <AlertDialog open={open} onOpenChange={onClose}>
       <AlertDialogContent>
@@ -36,6 +39,7 @@ export default function PasswordDialog({
         />
         <AlertDialogFooter>
           <AlertDialogCancel>Close & Send</AlertDialogCancel>
+          <Button onClick={() => router.push("/")}>Go Home</Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

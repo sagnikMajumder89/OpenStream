@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
   };
 
   // Simulate delay
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  // await new Promise((resolve) => setTimeout(resolve, 1500));
 
   // Simulate error
   // return new Response(JSON.stringify({ error: "Internal Server Error" }), {
