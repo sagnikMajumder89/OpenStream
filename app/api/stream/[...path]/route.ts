@@ -12,7 +12,7 @@ export async function GET(
   }
   const { path } = await params;
   const relativePath = path.join("/");
-  const filePath = join(process.cwd(), "contents", relativePath);
+  const filePath = join(process.cwd(), "contents", "series", relativePath);
 
   if (!existsSync(filePath)) {
     return new NextResponse("Not found", { status: 404 });
