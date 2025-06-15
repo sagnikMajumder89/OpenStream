@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createReadStream, statSync, existsSync, readFileSync } from "fs";
+import { createReadStream, statSync, existsSync } from "fs";
 import { join, dirname } from "path";
 
 export async function GET(

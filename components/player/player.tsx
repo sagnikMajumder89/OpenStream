@@ -66,7 +66,7 @@ export default function VideoPlayer({
       },
       false
     );
-  }, [src]);
+  }, [src, type]);
 
   return (
     <div data-vjs-player className="w-full mx-auto">

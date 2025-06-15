@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { Type } from "@/lib/generated/prisma";
+import { Type } from "@prisma/client";
 import logger from "@/lib/logger";
 export async function POST(request: Request) {
   const body = await request.json();
