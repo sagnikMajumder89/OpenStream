@@ -35,3 +35,11 @@ export interface SeasonEpisode {
   seasonNumber: number;
   episodeNumber: number;
 }
+
+export interface MovieData {
+  id: string;
+  title: string;
+  img: string;
+  description: string;
+  src: string;
+}

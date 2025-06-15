@@ -1,23 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createReadStream, statSync, existsSync } from "fs";
-import { join } from "path";
+import { createReadStream, statSync, existsSync, readFileSync } from "fs";
+import { join, dirname } from "path";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const token = req.cookies.get("feedback")?.value;
-  if (!token || token !== process.env.NEXT_VIDEO_TOKEN) {
-    return new NextResponse("Unauthorized", { status: 401 });
-  }
+  // ----- Validate path -----
   const { path } = await params;
   const relativePath = path.join("/");
-  const filePath = join(process.cwd(), "contents", "series", relativePath);
+  const filePath = join(process.cwd(), "contents", relativePath);
 
   if (!existsSync(filePath)) {
     return new NextResponse("Not found", { status: 404 });
   }
 
+  // ----- Check metadata file -----
+  const metaPath = join(dirname(filePath), "metadata");
+  const isProtected = !existsSync(metaPath);
+
+  // ----- If protected, check token -----
+  if (isProtected) {
+    const token = req.cookies.get("feedback")?.value;
+    if (!token || token !== process.env.NEXT_VIDEO_TOKEN) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+  }
+
+  // ----- Read file and prepare response -----
   const fileStat = statSync(filePath);
   const range = req.headers.get("range");
 

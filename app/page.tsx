@@ -26,6 +26,7 @@ export default function Home() {
       try {
         const response = await axios.get("/api/trendings");
         const data = response.data;
+        console.log("Trendings data:", data);
         setTrendings(data);
       } catch (err) {
         const axiosError = err as AxiosError;
@@ -65,7 +66,7 @@ export default function Home() {
               className="w-full cursor-pointer hover:opacity-82 transition-opacity duration-300"
               onClick={() => {
                 if (item.type === "Series") router.push(`/series/${item.id}`);
-                else router.push(`/movies/${item.id}`);
+                else router.push(`/movie/${item.id}`);
               }}
             >
               <CardHeader>

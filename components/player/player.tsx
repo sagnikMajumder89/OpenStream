@@ -5,7 +5,13 @@ import "video.js/dist/video-js.css";
 import { useEffect, useRef } from "react";
 import type Player from "video.js/dist/types/player";
 
-export default function VideoPlayer({ src }: { src: string }) {
+export default function VideoPlayer({
+  src,
+  type,
+}: {
+  src: string;
+  type: string;
+}) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playerRef = useRef<Player | null>(null);
 
@@ -13,8 +19,8 @@ export default function VideoPlayer({ src }: { src: string }) {
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
-    const newVideoUrl = `/api/stream${src}/index.m3u8`;
-    const newSubtitleUrl = `/api/stream${src}/subtitles.vtt`;
+    const newVideoUrl = `/api/stream/${type}${src}/index.m3u8`;
+    const newSubtitleUrl = `/api/stream/${type}${src}/subtitles.vtt`;
 
     if (!playerRef.current) {
       playerRef.current = videojs(videoElement, {
@@ -38,7 +44,6 @@ export default function VideoPlayer({ src }: { src: string }) {
         (playerRef.current as any)?.textTrackSettings.updateDisplay();
       });
     } else {
-      // If reusing player, clear previous remote text tracks
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const remoteTracks = playerRef.current.remoteTextTracks() as any;
       for (let i = remoteTracks.length - 1; i >= 0; i--) {
@@ -46,13 +51,11 @@ export default function VideoPlayer({ src }: { src: string }) {
       }
     }
 
-    // Set new source
     playerRef.current.src({
       src: newVideoUrl,
       type: "application/x-mpegURL",
     });
 
-    // Re-add subtitle track
     playerRef.current.addRemoteTextTrack(
       {
         kind: "subtitles",

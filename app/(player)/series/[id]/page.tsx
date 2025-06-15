@@ -63,6 +63,7 @@ export default function Player() {
                 selectedSeasonEpisode.episodeNumber - 1
               ].videoUrl
             }
+            type="series"
           />
         </div>
         <p className="text-gray-700 mb-4">{series!.description}</p>
