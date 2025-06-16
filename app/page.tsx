@@ -26,7 +26,6 @@ export default function Home() {
       try {
         const response = await axios.get("/api/trendings");
         const data = response.data;
-        console.log("Trendings data:", data);
         setTrendings(data);
       } catch (err) {
         const axiosError = err as AxiosError;
@@ -62,11 +61,10 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {trendings.map((item) => (
             <Card
-              key={item.id}
+              key={`${item.type}-${item.id}`}
               className="w-full cursor-pointer hover:opacity-82 transition-opacity duration-300"
               onClick={() => {
-                if (item.type === "Series") router.push(`/series/${item.id}`);
-                else router.push(`/movie/${item.id}`);
+                router.push(`/${item.type.toLowerCase()}/${item.id}`);
               }}
             >
               <CardHeader>

@@ -26,20 +26,21 @@ model Series {
 }
 
 model Season {
-  id       Int        @id @default(autoincrement())
-  episodes Episodes[]
-  Series   Series?    @relation(fields: [seriesId], references: [id])
-  seriesId Int?
+  id           Int        @id @default(autoincrement())
+  seasonNumber Int
+  episodes     Episodes[]
+  Series       Series?    @relation(fields: [seriesId], references: [id])
+  seriesId     Int?
 }
 
 model Episodes {
-  id          Int    @id @default(autoincrement())
-  title       String
-  description String
-  src         String
-
-  Season   Season? @relation(fields: [seasonId], references: [id])
-  seasonId Int?
+  id            Int     @id @default(autoincrement())
+  title         String
+  description   String
+  src           String
+  episodeNumber Int
+  Season        Season? @relation(fields: [seasonId], references: [id])
+  seasonId      Int?
 }
 
 enum Type {

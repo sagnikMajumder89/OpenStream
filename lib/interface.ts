@@ -3,7 +3,7 @@ export interface TrendingData {
   title: string;
   description: string;
   img: string;
-  type: "Series" | "Movie";
+  type: "SERIES" | "MOVIE";
 }
 
 export interface TrendingResponse {
@@ -15,7 +15,7 @@ interface SeriesEpisode {
   episodeNumber: number;
   title: string;
   description: string;
-  videoUrl: string;
+  src: string;
 }
 
 export interface SeriesSeason {

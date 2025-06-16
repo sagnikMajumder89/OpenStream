@@ -27,9 +27,6 @@ export async function GET(request: NextRequest) {
     const series = fileName[0];
     const episode = fileName[1];
 
-    console.log("Series:", series);
-    console.log("Episode:", episode);
-
     if (!series || !episode) {
       return new Response("Missing parameters", { status: 400 });
     }
@@ -67,7 +64,6 @@ export async function GET(request: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return new Response(videoStream as any, { status: 206, headers });
   } catch (error) {
-    console.error("Error in video-url route:", error);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

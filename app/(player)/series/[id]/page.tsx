@@ -61,7 +61,7 @@ export default function Player() {
             src={
               series!.seasons[selectedSeasonEpisode.seasonNumber - 1].episodes[
                 selectedSeasonEpisode.episodeNumber - 1
-              ].videoUrl
+              ].src
             }
             type="series"
           />
